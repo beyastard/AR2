@@ -11,6 +11,8 @@
 *.ilk
 *.map
 *.exp
+*.iobj
+*.ipdb
 
 # Precompiled Headers
 *.gch
