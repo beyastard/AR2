@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{E82A5DAB-3532-4BD8-8B5F-2948697165DB}</ProjectGuid>
-    <RootNamespace>AR2Lib</RootNamespace>
+    <RootNamespace>APMLib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -109,12 +109,17 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <CompileAs>CompileAsC</CompileAs>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,8 +147,12 @@
     <ClInclude Include="include\ar2f.h" />
     <ClInclude Include="include\ar2i.h" />
     <ClInclude Include="include\ar2p.h" />
-    <ClInclude Include="include\ar2t.h" />
+    <ClInclude Include="include\ar2t.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="include\ar2u.h" />
+    <ClInclude Include="include\ar2w.h" />
     <ClInclude Include="include\ar2x.h" />
   </ItemGroup>
   <ItemGroup>
@@ -151,8 +160,12 @@
     <ClCompile Include="src\ar2f.c" />
     <ClCompile Include="src\ar2i.c" />
     <ClCompile Include="src\ar2p.c" />
-    <ClCompile Include="src\ar2t.c" />
+    <ClCompile Include="src\ar2t.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\ar2u.c" />
+    <ClCompile Include="src\ar2w.c" />
     <ClCompile Include="src\ar2x.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

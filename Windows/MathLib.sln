@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.2092
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AR2Lib", "..\MathLib\AR2Lib\AR2Lib.vcxproj", "{E82A5DAB-3532-4BD8-8B5F-2948697165DB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "APMLib", "..\MathLib\APMLib\APMLib.vcxproj", "{E82A5DAB-3532-4BD8-8B5F-2948697165DB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AR2Test_1", "..\MathLib\AR2LibTests\AR2Test_1\AR2Test_1.vcxproj", "{C9BA77E6-8500-4C38-8493-2C3AD28AEC66}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "APMTest_1", "..\MathLib\APMLibTests\APMTest_1\APMTest_1.vcxproj", "{C9BA77E6-8500-4C38-8493-2C3AD28AEC66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A34717DB-43F7-4844-AFF0-F935EB5FFD6E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AR2Test_2", "..\MathLib\AR2LibTests\AR2Test_2\AR2Test_2.vcxproj", "{0057C625-153A-41C7-B34F-CAD38628CDA2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "APMTest_2", "..\MathLib\APMLibTests\APMTest_2\APMTest_2.vcxproj", "{0057C625-153A-41C7-B34F-CAD38628CDA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

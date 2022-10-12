@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AR2Test_2.c">
+    <ClCompile Include="APMTest_1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

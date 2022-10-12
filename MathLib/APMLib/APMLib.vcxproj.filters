@@ -36,6 +36,9 @@
     <ClInclude Include="include\ar2x.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ar2w.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ar2e.c">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ar2x.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ar2w.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
