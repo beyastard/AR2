@@ -75,9 +75,9 @@
       <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).*" ..\..\APMLibSDK\lib\debug\ /Y /D /Q
-xcopy .\include\*.h ..\..\APMLibSDK\include\ /Y /D /Q
-xcopy ..\..\Docs\*.pdf ..\..\APMLibSDK\Docs\ /Y /D /Q</Command>
+      <Command>xcopy "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).*" ..\..\APMLib32SDK\lib\debug\ /Y /D /Q
+xcopy .\include\*.h ..\..\APMLib32SDK\include\ /Y /D /Q
+xcopy ..\..\Docs\*.pdf ..\..\APMLib32SDK\Docs\ /Y /D /Q</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,9 +96,9 @@ xcopy ..\..\Docs\*.pdf ..\..\APMLibSDK\Docs\ /Y /D /Q</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).*" ..\..\APMLibSDK\lib\release\ /Y /D /Q
-xcopy .\include\*.h ..\..\APMLibSDK\include\ /Y /D /Q
-xcopy ..\..\Docs\*.pdf ..\..\APMLibSDK\Docs\ /Y /D /Q</Command>
+      <Command>xcopy "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).*" ..\..\APMLib32SDK\lib\release\ /Y /D /Q
+xcopy .\include\*.h ..\..\APMLib32SDK\include\ /Y /D /Q
+xcopy ..\..\Docs\*.pdf ..\..\APMLib32SDK\Docs\ /Y /D /Q</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
