@@ -18,14 +18,14 @@ FILE* jnl_file = NULL;
 long test_quit(void)
 {
 	if (!_kbhit())
-		return (0);
+		return 0;
 
 	if (_getch() != 'Q')
-		return (0);
+		return 0;
 
 	quit = 1;
 
-	return (1);
+	return 1;
 }
 
 /* Temporarily or permanently halt the program */
@@ -60,6 +60,7 @@ void file_fail(char* f, char* t)
 void tprint(char* s, ...)
 {
 	static va_list arglist;
+
 	if (jnl_file == NULL)
 		while ((jnl_file = fopen("AR2TEST.JNL", "a")) == NULL)
 			file_fail("JNL", "open");
@@ -92,9 +93,7 @@ void tudump(ireg* a)
 	tprint("c=%d d=%d f=%d &v=%d v=", a->capacity, a->digits, a->flags, a->value);
 
 	for (i = 0; i < a->digits; i++)
-	{
 		tprint("%d ", (unsigned)a->value[i]);
-	}
 
 	tprint("\n");
 }
@@ -176,20 +175,14 @@ void tcheckr(ireg* a, ireg* b, char* id, long ik)
 		halt();
 
 	if (chk->value == NULL)
-	{
 		imovk(chk, 0);
-	}
 
 	if (a == b)
 	{
 		if (isgn(chk))
-		{
 			tprint("Fail\n");
-		}
 		else
-		{
 			tprint("Pass!\n");
-		}
 	}
 	else
 	{
@@ -290,13 +283,10 @@ void tmodm2ke(ireg* a, ireg* q, long m, long k, ireg* e)
 	}
 
 	while (icmp(a, q) >= 0)
-	{
-		isub(a, q); }
+		isub(a, q);
 
 	while (isgn(a) < 0)
-	{
 		iadd(a, q);
-	}
 }
 
 /*

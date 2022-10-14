@@ -6,7 +6,6 @@
 void ar2p_get_primes(void);
 void ar2p_check_pr_tab(void);
 void ar2p_load_pr_tab(void);
-
 void inxtprm(ireg* p);
 
 #endif

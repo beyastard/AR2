@@ -11,7 +11,6 @@ void eval_factorial(void);
 void eval_prime_product(void);
 void eval_compute(long key);
 void eval_push(long key);
-
 ireg* ieval(char* exp);
 
 #endif

@@ -834,6 +834,7 @@ int main(int argc, char** argv)
 	ttbit("3333333333333333333333333333333333333");
 
 	tprint("Check icmp\n");
+
 	/* All small */
 	imovk(a, 5);
 	imovk(b, 3);
@@ -995,6 +996,7 @@ int main(int argc, char** argv)
 	tcheckd(x, "0", "icmp -0 = -0", 55);
 
 	tprint("Check icmpk\n");
+
 	/* All small */
 	imovk(a, 5);
 	imovk(b, 3);
@@ -1257,22 +1259,39 @@ int main(int argc, char** argv)
 		tprint("c = a^%d ", i);
 		tidisp(c);
 		tprint("\n");
-		if (i == 2) { tcheckd(c, "999999998000000001", "isqu", i); }
-		if (i == 4) { tcheckd(c, "999999996000000005999999996000000001", "isqu", i); }
+
+		if (i == 2)
+			tcheckd(c, "999999998000000001", "isqu", i);
+
+		if (i == 4)
+			tcheckd(c, "999999996000000005999999996000000001", "isqu", i);
 	}
 
 	imov(d, a);
 	imov(e, a);
+
 	for (i = 2; i <= 64; i++)
 	{
 		imul(d, a);
 		imulk(e, 999999999);
-		if (i == 2) { tcheckd(d, "999999998000000001", "imul", i); }
-		if (i == 2) { tcheckd(e, "999999998000000001", "imulk", i); }
-		if (i == 3) { tcheckd(d, "999999997000000002999999999", "imul", i); }
-		if (i == 3) { tcheckd(e, "999999997000000002999999999", "imulk", i); }
-		if (i == 4) { tcheckd(d, "999999996000000005999999996000000001", "imul", i); }
-		if (i == 4) { tcheckd(e, "999999996000000005999999996000000001", "imulk", i); }
+
+		if (i == 2)
+			tcheckd(d, "999999998000000001", "imul", i);
+
+		if (i == 2)
+			tcheckd(e, "999999998000000001", "imulk", i);
+
+		if (i == 3)
+			tcheckd(d, "999999997000000002999999999", "imul", i);
+
+		if (i == 3)
+			tcheckd(e, "999999997000000002999999999", "imulk", i);
+
+		if (i == 4)
+			tcheckd(d, "999999996000000005999999996000000001", "imul", i);
+
+		if (i == 4)
+			tcheckd(e, "999999996000000005999999996000000001", "imulk", i);
 	}
 
 	tcheckr(d, c, "imul/imulk dc", 0);
@@ -1280,7 +1299,9 @@ int main(int argc, char** argv)
 
 	for (i = 64; i > 0; i--)
 	{
-		if (i == 4) { tcheckd(c, "999999996000000005999999996000000001", "idivk1", i); }
+		if (i == 4)
+			tcheckd(c, "999999996000000005999999996000000001", "idivk1", i);
+
 		idivk(c, 999999999);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk1 kres", i);
@@ -1311,22 +1332,29 @@ int main(int argc, char** argv)
 
 	for (i = 32; i > 0; i--)
 	{
-		if (i == 4) { tcheckd(d, "999999996000000005999999996000000001", "idivk3", i); }
+		if (i == 4)
+			tcheckd(d, "999999996000000005999999996000000001", "idivk3", i);
+
 		idivk(d, 3);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk3a kres", i);
+
 		idivk(d, 3);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk3b kres", i);
+
 		idivk(d, 3);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk3c kres", i);
+
 		idivk(d, 3);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk3d kres", i);
+
 		idivk(d, 37);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk3e kres", i);
+
 		idivk(d, 333667);
 		imovk(h, kres);
 		tcheckd(h, "0", "idivk3f kres", i);
@@ -1430,23 +1458,17 @@ int main(int argc, char** argv)
 	imovd(h, "11111");
 
 	for (i = 0; i <= 20; i++)
-	{
 		ttest2k(1, i);
-	}
 
 	imovd(h, "1111111111");
 
 	for (i = 0; i <= 35; i++)
-	{
 		ttest2k(2, i);
-	}
 
 	imovd(h, "11111111112222222222333333333344444444445555555555");
 
 	for (i = 0; i <= 200; i++)
-	{
 		ttest2k(3, i);
-	}
 
 	tprint("Check idiv and imod\n");
 
@@ -1522,8 +1544,8 @@ int main(int argc, char** argv)
 	return 0;
 }
 
-void ttestdivmod(char* n, char* m, long to, long mult)
 /* check idiv and imod */
+void ttestdivmod(char* n, char* m, long to, long mult)
 {
 	static long i;
 	static long k;
@@ -1542,11 +1564,14 @@ void ttestdivmod(char* n, char* m, long to, long mult)
 	imov(g, c);
 	ineg(g);
 	umodk(g, k); /* g = -(n mod m) */
-	if (isgn(g) < 0) { iadd(g, b); } /* g = (-n mod m) */
+
+	if (isgn(g) < 0) /* g = (-n mod m) */
+		iadd(g, b);
 
 	for (i = 0; i <= to; i++)
 	{
 		tprint("n=%s m=%s \n", n, m);
+
 		imov(x, a);
 		imov(y, x);
 		imov(z, b);
@@ -1571,8 +1596,8 @@ void ttestdivmod(char* n, char* m, long to, long mult)
 	}
 }
 
-void ttest2k(long k, long i)
 /* check "2k" functions: usep2k, imul2k, idiv2k, imod2k */
+void ttest2k(long k, long i)
 {
 	static long j;
 	static long ki;
@@ -1586,8 +1611,13 @@ void ttest2k(long k, long i)
 	imov(e, h);
 	imov(f, h);
 	imov(g, h);
-	for (j = 1; j <= i; j++) { imulk(d, 2); }
-	for (j = 1; j <= i; j++) { idivk(f, 2); }
+
+	for (j = 1; j <= i; j++)
+		imulk(d, 2);
+
+	for (j = 1; j <= i; j++)
+		idivk(f, 2);
+
 	imov(x, f);
 	imul(x, d);
 	isub(e, x);
@@ -1612,7 +1642,10 @@ void ttest2k(long k, long i)
 	ineg(a);
 	imod2k(a, i);
 	ineg(a);
-	if (i) { iadd(a, d); }
+
+	if (i)
+		iadd(a, d);
+
 	tcheckr(a, e, "imod2k neg", ki);
 }
 
@@ -1623,11 +1656,13 @@ void ttbit(char* dig)
 
 	imovd(a, dig);
 	imovk(b, 0);
+
 	for (i = 0; i < ilen(a); i++)
 	{
 		imovk(c, ibit(a, i));
 		imul2k(c, i);
 		iadd(b, c);
 	}
+
 	tcheckd(b, dig, "ibit", 0);
 }

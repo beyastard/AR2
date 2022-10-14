@@ -37,13 +37,16 @@ void ar2p_get_primes(void)
 	static unsigned long k_hi;
 	static unsigned long q;
 	static unsigned long q_hi;
+
 	static ireg rrx;
 	static ireg* rx = &rrx;
 
 	k_hi = es_tab_dim << 5;
+
 	imov(ar2p_ep_hi, ar2p_ep_lo);
 	iaddk(ar2p_ep_hi, k_hi + k_hi);
 	isqrt(rx, ar2p_ep_hi);
+
 	q_hi = iwd0(rx) + 2;
 	f = 0;
 
@@ -78,6 +81,7 @@ void ar2p_get_primes(void)
 	printf(" ");
 	idisp(ar2p_ep_hi);
 	printf(") with sieve limit %lu \n", q_hi);
+
 	ar2p_f = 1;
 }
 
@@ -88,6 +92,7 @@ void ar2p_check_pr_tab(void)
 	static unsigned char* pr;
 
 	printf("AR2P: Checking pr_tab\n");
+
 	for (pr = ar2p_pr_lo, p = 3, q = 3; pr < ar2p_pr_hi; pr++)
 	{
 		p += *pr;
@@ -95,8 +100,7 @@ void ar2p_check_pr_tab(void)
 
 		if (p != q)
 		{
-			printf("AR2P: Error at %d in pr_tab: %lu should be %ld\n",
-			       (pr - ar2p_pr_lo), p, q);
+			printf("AR2P: Error at %d in pr_tab: %lu should be %ld\n", pr - ar2p_pr_lo, p, q);
 			stop();
 		}
 	}
@@ -117,6 +121,7 @@ void ar2p_load_pr_tab(void)
 	static unsigned char* qr;
 
 	printf("AR2P: Loading pr_tab\n");
+
 	for (qr = ar2p_pr_lo, q0 = 3; q0 < 1609; qr++)
 	{
 		q = xnxtprmk(q0);
@@ -160,6 +165,7 @@ void inxtprm(ireg* p)
 {
 	static ireg rrx;
 	static ireg* rx = &rrx;
+
 	static unsigned long k;
 	static unsigned long r;
 	static unsigned long w;

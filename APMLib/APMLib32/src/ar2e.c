@@ -380,5 +380,5 @@ ireg *ieval(char *exp)
 	if (*eval_err != 0)
 		imovk(eval_astack[0], 0);
 
-	return (eval_astack[0]);
+	return eval_astack[0];
 }

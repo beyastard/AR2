@@ -11,37 +11,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\ar2e.h" />
-    <ClInclude Include="include\ar2f.h" />
-    <ClInclude Include="include\ar2i.h" />
-    <ClInclude Include="include\ar2p.h" />
-    <ClInclude Include="include\ar2u.h" />
-    <ClInclude Include="include\ar2w.h" />
-    <ClInclude Include="include\ar2x.h" />
+    <ClInclude Include="include\vfypr32.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ar2e.c" />
-    <ClCompile Include="src\ar2f.c" />
-    <ClCompile Include="src\ar2i.c" />
-    <ClCompile Include="src\ar2p.c" />
-    <ClCompile Include="src\ar2u.c" />
-    <ClCompile Include="src\ar2w.c" />
-    <ClCompile Include="src\ar2x.c" />
+    <ClCompile Include="src\vfypr32.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5FFA8868-6222-499E-89AA-58FE2D723BFA}</ProjectGuid>
-    <RootNamespace>APMLib32</RootNamespace>
+    <ProjectGuid>{5B8E86F9-8485-4E2D-A099-74EF25EB0389}</ProjectGuid>
+    <RootNamespace>VFYPR</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>VFYPR32</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,15 +61,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\include;..\..\APMLib32SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsC</CompileAs>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).*" ..\..\APMLib32SDK\lib\debug\ /Y /D /Q
-xcopy .\include\*.h ..\..\APMLib32SDK\include\ /Y /D /Q
-xcopy ..\..\Docs\*.pdf ..\..\APMLib32SDK\Docs\ /Y /D /Q</Command>
-    </PostBuildEvent>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\APMLib32SDK\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>APMLib32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -89,19 +77,16 @@ xcopy ..\..\Docs\*.pdf ..\..\APMLib32SDK\Docs\ /Y /D /Q</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\include;..\..\APMLib32SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsC</CompileAs>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\APMLib32SDK\lib\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>APMLib32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).*" ..\..\APMLib32SDK\lib\release\ /Y /D /Q
-xcopy .\include\*.h ..\..\APMLib32SDK\include\ /Y /D /Q
-xcopy ..\..\Docs\*.pdf ..\..\APMLib32SDK\Docs\ /Y /D /Q</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

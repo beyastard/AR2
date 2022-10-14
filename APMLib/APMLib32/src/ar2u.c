@@ -21,9 +21,7 @@ void ualloc(ireg* a, long c, long d)
 	a->value = (long*)malloc(sizeof(long) * c);
 
 	if (a->value != NULL)
-	{
 		xmovz(a->value, a->digits);
-	}
 	else
 	{
 		printf("Unable to allocate %ld digits in ualloc\n", a->capacity);
@@ -55,9 +53,7 @@ void uextend(ireg* a, long d)
 	}
 
 	if (d <= a->capacity)
-	{
 		return;
-	}
 
 	/* Allocate new array, copy old into new, free old */
 	v = (long*)realloc(a->value, sizeof(long) * d);
@@ -88,14 +84,10 @@ void usep2k(ireg* a, ireg* b, long k)
 	if (db > 0)
 	{
 		if (b->value == NULL)
-		{
 			ualloc(b, db, db);
-		}
 
 		if (b->digits < db)
-		{
 			uextend(b, db);
-		}
 
 		xsep2k(a->value, b->value, k, a->digits);
 		b->digits = db;
@@ -103,9 +95,7 @@ void usep2k(ireg* a, ireg* b, long k)
 	else
 	{
 		if (b->value == NULL)
-		{
 			ualloc(b, 8, 1);
-		}
 
 		b->value[0] = 0;
 		b->digits = 1;
@@ -122,9 +112,7 @@ void udump(ireg* a)
 	printf("c=%ld d=%ld f=%ld &v=%ld v=", a->capacity, a->digits, a->flags, (long)a->value);
 
 	for (i = 0; i < a->digits; i++)
-	{
 		printf("%d ", (unsigned)a->value[i]);
-	}
 
 	printf("\n");
 }

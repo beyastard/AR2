@@ -20,19 +20,13 @@ void fexpmod(ireg* a, ireg* b, ireg* c, ireg* q, void (fsqu)(ireg* a))
 	static unsigned long j;
 
 	if (b->value == NULL)
-	{
 		iinvparm("fexpmod");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("fexpmod");
-	}
 
 	if (c->value == NULL)
-	{
 		iinvparm("fexpmod");
-	}
 
 	if (c->digits < 1)
 	{
@@ -41,9 +35,7 @@ void fexpmod(ireg* a, ireg* b, ireg* c, ireg* q, void (fsqu)(ireg* a))
 	imovk(a, 1);
 
 	if (isgn(c) <= 0)
-	{
 		return;
-	}
 
 	f = 0;
 
@@ -79,45 +71,30 @@ void fexpmodm2ke(ireg* a, ireg* b, ireg* c, ireg* q, long m, long k, ireg* e, vo
 	static unsigned long j;
 
 	if (b->value == NULL)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	if (c->value == NULL)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	if (c->digits < 1)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	if (q->value == NULL)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	if (q->digits < 1)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	if (isgn(q) <= 0)
-	{
 		iinvparm("fexpmodm2ke");
-	}
 
 	imovk(a, 1);
+
 	if (isgn(c) <= 0)
-	{
 		return;
-	}
 
 	f = 0;
 
@@ -153,9 +130,7 @@ void fexpmodm2ke(ireg* a, ireg* b, ireg* c, ireg* q, long m, long k, ireg* e, vo
 			utrim(a);
 
 			if (a->digits > q->digits + 8)
-			{
 				imod(a, q);
-			}
 		}
 	}
 
@@ -186,11 +161,7 @@ long ffermatm2ke(long m, long k, ireg* e, long g, void (fsqu)(ireg* a))
 	fexpmodm2ke(a, b, q, q, m, k, e, fsqu);
 
 	if (icmp(a, b))
-	{
-		return (0);
-	}
+		return 0;
 	else
-	{
-		return (1);
-	}
+		return 1;
 }

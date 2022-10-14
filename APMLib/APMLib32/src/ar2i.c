@@ -38,23 +38,17 @@ double ilog10 = 2.30258509299404568401799145468436420757;
 void imov(ireg* a, ireg* b)
 {
 	if (b->value == NULL)
-	{
 		iinvparm("imov");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("imov");
-	}
 
 	if (a->value == NULL)
 	{
 		ualloc(a, b->digits, b->digits); }
 
 	if (a->capacity < b->digits)
-	{
 		uextend(a, b->digits);
-	}
 
 	xmovf(a->value, b->value, b->digits);
 
@@ -66,14 +60,10 @@ void imov(ireg* a, ireg* b)
 void imovk(ireg* a, long k)
 {
 	if (a->value == NULL)
-	{
 		ualloc(a, 8, 1);
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imovk");
-	}
 
 	if (k >= 0)
 	{
@@ -97,14 +87,10 @@ void imovd(ireg* a, char* c)
 	static long s;
 
 	if (a->value == NULL)
-	{
 		ualloc(a, 8, 1);
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imovd");
-	}
 
 	i = 0;
 	s = 0;
@@ -132,14 +118,10 @@ void imovd(ireg* a, char* c)
 		k = c[i] - '0';
 
 		if (k < 0 || k > 9)
-		{
 			break;
-		}
 
 		if (a->capacity <= a->digits)
-		{
 			uextend(a, a->digits + 1);
-		}
 
 		xmulk(a->value, 10, a->digits);
 		a->digits++;
@@ -157,32 +139,22 @@ void iadd(ireg* a, ireg* b)
 {
 	static long f;
 	if (a->value == NULL)
-	{
 		iinvparm("iadd");
-	}
 
 	if (b->value == NULL)
-	{
 		iinvparm("iadd");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("iadd");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("iadd");
-	}
 
 	/* Extend a if shorter than b */
 	if (a->digits < b->digits)
 	{
 		if (a->capacity < b->digits)
-		{
 			uextend(a, b->digits);
-		}
 
 		xmovz(&a->value[a->digits], b->digits - a->digits);
 		a->digits = b->digits;
@@ -196,9 +168,7 @@ void iadd(ireg* a, ireg* b)
 		if (f & CarryFlag)
 		{
 			if (a->capacity <= a->digits)
-			{
 				uextend(a, a->digits + 1);
-			}
 
 			a->value[a->digits] = 1;
 			a->digits++;
@@ -223,14 +193,10 @@ void iaddk(ireg* a, long k)
 	static long f;
 
 	if (a->value == NULL)
-	{
 		iinvparm("iaddk");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("iaddk");
-	}
 
 	if (k >= 0)
 	{
@@ -241,9 +207,7 @@ void iaddk(ireg* a, long k)
 			if (f & CarryFlag)
 			{
 				if (a->capacity <= a->digits)
-				{
 					uextend(a, a->digits + 1);
-				}
 
 				a->value[a->digits] = 1;
 				a->digits++;
@@ -279,9 +243,7 @@ void iaddk(ireg* a, long k)
 			if (f & CarryFlag)
 			{
 				if (a->capacity <= a->digits)
-				{
 					uextend(a, a->digits + 1);
-				}
 
 				a->value[a->digits] = 1;
 				a->digits++;
@@ -295,32 +257,22 @@ void isub(ireg* a, ireg *b)
 {
 	static long f;
 	if (a->value == NULL)
-	{
-		iinvparm("isub"); 
-	}
+		iinvparm("isub");
 
 	if (b->value == NULL)
-	{
-		iinvparm("isub"); 
-	}
+		iinvparm("isub");
 
 	if (a->digits < 1)
-	{
 		iinvparm("isub");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("isub");
-	}
 
 	/* Extend a if shorter than b */
 	if (a->digits < b->digits)
 	{
 		if (a->capacity < b->digits)
-		{
 			uextend(a, b->digits);
-		}
 
 		xmovz(&a->value[a->digits], b->digits - a->digits);
 		a->digits = b->digits;
@@ -334,9 +286,7 @@ void isub(ireg* a, ireg *b)
 		if (f & CarryFlag)
 		{
 			if (a->capacity <= a->digits)
-			{
 				uextend(a, a->digits + 1);
-			}
 
 			a->value[a->digits] = 1;
 			a->digits++;
@@ -359,26 +309,18 @@ void isub(ireg* a, ireg *b)
 long isgn(ireg* a)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("isgn");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("isgn");
-	}
 
 	if (!xsig(a->value, a->digits))
-	{
-		return (0);
-	}
+		return 0;
 
 	if (a->flags & NegativeReg)
-	{
-		return (-1);
-	}
+		return -1;
 
-	return (1);
+	return 1;
 }
 
 /* sgn(a - b) = -1 if a < b, 0 if a = b, 1 if a > b */
@@ -405,22 +347,22 @@ long icmp(ireg* a, ireg* b)
 			s = xcmp(a->value, b->value, a->digits, b->digits); /* a >= 0, b >= 0 */
 
 			if (s & ZeroFlag)
-				return (0);
+				return 0;
 
 			if (s & CarryFlag)
-				return (-1);
+				return -1;
 			else
-				return (1);
+				return 1;
 		}
 		else
 		{
 			if (isgn(a))
-				return (1); /* a >= 0, b <= 0 */
+				return 1; /* a >= 0, b <= 0 */
 
 			if (isgn(b))
-				return (1);
+				return 1;
 
-			return (0);
+			return 0;
 		}
 	}
 	else
@@ -430,22 +372,22 @@ long icmp(ireg* a, ireg* b)
 			s = xcmp(b->value, a->value, b->digits, a->digits); /* a <= 0, b <= 0 */
 
 			if (s & ZeroFlag)
-				return (0);
+				return 0;
 
 			if (s & CarryFlag)
-				return (-1);
+				return -1;
 			else
-				return (1);
+				return 1;
 		}
 		else
 		{
 			if (isgn(a))
-				return (-1); /* a <= 0, b >= 0 */
+				return -1; /* a <= 0, b >= 0 */
 
 			if (isgn(b))
-				return (-1);
+				return -1;
 
-			return (0);
+			return 0;
 		}
 	}
 }
@@ -470,15 +412,15 @@ long icmpk(ireg* a, long k)
 			s = xcmp(a->value, &b, a->digits, 1);
 
 			if (s & ZeroFlag)
-				return (0);
+				return 0;
 
 			if (s & CarryFlag)
-				return (-1);
+				return -1;
 			else
-				return (1);
+				return 1;
 		}
 		else
-			return (-1); /* a <= 0, k > 0 */
+			return -1; /* a <= 0, k > 0 */
 	}
 	else if (k < 0)
 	{
@@ -488,18 +430,18 @@ long icmpk(ireg* a, long k)
 			s = xcmp(&b, a->value, 1, a->digits);
 
 			if (s & ZeroFlag)
-				return (0);
+				return 0;
 
 			if (s & CarryFlag)
-				return (-1);
+				return -1;
 			else
-				return (1);
+				return 1;
 		}
 		else
-			return (1); /* a >= 0, k < 0 */
+			return 1; /* a >= 0, k < 0 */
 	}
 	else
-		return (isgn(a)); /* k = 0 */
+		return isgn(a); /* k = 0 */
 }
 
 /* a = a^2 */
@@ -510,14 +452,10 @@ void isqu(ireg* a)
 	register long L;
 
 	if (a->value == NULL)
-	{
 		iinvparm("isqu");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("isqu");
-	}
 
 	utrim(a);
 	da2 = (a->digits + a->digits);
@@ -526,9 +464,7 @@ void isqu(ireg* a)
 	/* School method */
 	{
 		if (a->capacity < da2)
-		{
 			uextend(a, da2);
-		}
 
 		xsqu(a->value, a->digits);
 	}
@@ -543,14 +479,10 @@ void isqu(ireg* a)
 		L = 1;
 
 		while (L <= da4)
-		{
 			L += L;
-		}
 
 		if (a->capacity <= (L >> 1))
-		{
 			uextend(a, 1 + (L >> 1));
-		}
 
 		xfft_init(L, 1);
 		xfft_pack(FFTv1, (unsigned short*)a->value, L, da2);
@@ -575,24 +507,16 @@ void imul(ireg* a, ireg* b)
 	register long L;
 
 	if (a->value == NULL)
-	{
 		iinvparm("imul");
-	}
 
 	if (b->value == NULL)
-	{
 		iinvparm("imul");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imul");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("imul");
-	}
 
 	utrim(a);
 	utrim(b);
@@ -605,9 +529,7 @@ void imul(ireg* a, ireg* b)
 	/* School method */
 	{
 		if (a->capacity < dab)
-		{
 			uextend(a, dab);
-		}
 
 		xmul(a->value, b->value, a->digits, b->digits);
 	}
@@ -629,14 +551,10 @@ void imul(ireg* a, ireg* b)
 		L = 1;
 
 		while (L <= dmax4)
-		{
 			L += L;
-		}
 
 		if (a->capacity <= (L >> 1))
-		{
 			uextend(a, 1 + (L >> 1));
-		}
 
 		xfft_init(L, 3);
 		xfft_pack(FFTv1, (unsigned short*)a->value, L, da2);
@@ -656,21 +574,15 @@ void imul(ireg* a, ireg* b)
 void imulk(ireg* a, long k)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("imulk");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imulk");
-	}
 
 	utrim(a);
 
 	if (a->capacity <= a->digits)
-	{
 		uextend(a, a->digits + 1);
-	}
 
 	if (k < 0)
 	{
@@ -678,9 +590,7 @@ void imulk(ireg* a, long k)
 		a->flags ^= NegativeReg;
 	}
 	else
-	{
 		xmulk(a->value, k, a->digits);
-	}
 
 	a->digits++;
 }
@@ -691,20 +601,15 @@ void imul2k(ireg* a, long k)
 	static long da;
 
 	if (a->value == NULL)
-	{
 		iinvparm("imul2k");
-	}
+
 	if (a->digits < 1)
-	{
 		iinvparm("imul2k");
-	}
 
 	da = (k + 31) >> 5;
 
 	if (a->capacity < a->digits + da)
-	{
 		uextend(a, a->digits + da);
-	}
 
 	xmul2k(a->value, k, a->digits);
 	a->digits += da;
@@ -719,29 +624,19 @@ a = -[ a / b], res = -(-a mod k), a <  0;  b > 0
 void idiv(ireg* a, ireg* b)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("idiv");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("idiv");
-	}
 
 	if (b->value == NULL)
-	{
 		iinvparm("idiv");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("idiv");
-	}
 
 	if (isgn(b) <= 0)
-	{
 		iinvparm("idiv");
-	}
 
 	utrim(a);
 	utrim(b);
@@ -753,22 +648,16 @@ void idiv(ireg* a, ireg* b)
 		if (res->digits >= b->digits)
 		{
 			if (res->capacity <= res->digits)
-			{
 				uextend(res, res->digits + 1);
-			}
 
 			xdiv(res->value, b->value, res->digits, b->digits, a->value);
 			a->digits = res->digits - b->digits + 1;
 			res->digits = b->digits;
 		}
-		else
-		/* d(b) > d(a) */
-		{
+		else /* d(b) > d(a) */
 			imovk(a, 0);
-		}
 	}
-	else
-	/* b->digits = 1 */
+	else /* b->digits = 1 */	
 	{
 		imovk(res, 0);
 		res->value[0] = xdivk(a->value, b->value[0], a->digits);
@@ -783,27 +672,19 @@ a = -[-a / k], kres = -(-a mod k), a <  0;  k = 32-bit positive integer
 void idivk(ireg* a, long k)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("idivk");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("idivk");
-	}
 
 	if (k == 0)
-	{
 		iinvparm("idivk");
-	}
 
 	utrim(a);
 	kres = xdivk(a->value, k, a->digits);
 
 	if (a->flags & NegativeReg)
-	{
 		kres = -kres;
-	}
 }
 
 /*
@@ -814,14 +695,10 @@ void idiv2k(ireg* a, long k)
 	static long d;
 
 	if (a->value == NULL)
-	{
 		iinvparm("idiv2k");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("idiv2k");
-	}
 
 	d = k >> 5;
 
@@ -831,9 +708,7 @@ void idiv2k(ireg* a, long k)
 		a->digits -= d;
 	}
 	else
-	{
 		imovk(a, 0);
-	}
 }
 
 /*
@@ -844,29 +719,19 @@ a = (a mod b) >= 0, b > 0
 void imod(ireg* a, ireg* b)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("imod");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imod");
-	}
 
 	if (b->value == NULL)
-	{
 		iinvparm("imod");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("imod");
-	}
 
 	if (isgn(b) <= 0)
-	{
 		iinvparm("imod");
-	}
 
 	utrim(a);
 	utrim(b);
@@ -876,9 +741,7 @@ void imod(ireg* a, ireg* b)
 		if (a->digits >= b->digits)
 		{
 			if (a->capacity <= a->digits)
-			{
 				uextend(a, a->digits + 1);
-			}
 
 			xmod(a->value, b->value, a->digits, b->digits);
 			a->digits = b->digits;
@@ -886,15 +749,10 @@ void imod(ireg* a, ireg* b)
 
 		/* Remainder must be non-negative */
 		if (isgn(a) < 0)
-		{
 			iadd(a, b);
-		}
 	}
-	else
-	/* b->digits = 1 */
-	{
+	else /* b->digits = 1 */
 		imodk(a, b->value[0]);
-	}
 }
 
 /*
@@ -903,19 +761,13 @@ a = (a mod k) >= 0,  k = 32-bit positive integer
 void imodk(ireg* a, long k)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("imodk");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imodk");
-	}
 
 	if (k == 0)
-	{
 		iinvparm("imodk");
-	}
 
 	utrim(a);
 
@@ -947,14 +799,10 @@ void imod2k(ireg* a, long k)
 	static unsigned long km;
 
 	if (a->value == NULL)
-	{
 		iinvparm("imod2k");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("imod2k");
-	}
 
 	if (k)
 	{
@@ -973,41 +821,29 @@ void imod2k(ireg* a, long k)
 
 			/* a < 0: compute 2^k - |a| */
 			if (a->capacity < da)
-			{
 				uextend(a, da);
-			}
 
 			if (a->digits < da)
-			{
 				xmovz(&a->value[a->digits], da - a->digits);
-			}
 
 			xneg(a->value, da);
 
 			if (kr)
-			{
 				a->value[kq] &= km;
-			}
 		}
 		else
 		{
 			if (kq >= a->digits)
-			{
 				return;
-			}
 
 			if (kr)
-			{
 				a->value[kq] &= km;
-			}
 		}
 
 		a->digits = da;
 	}
 	else
-	{
 		imovk(a, 0);
-	}
 }
 
 /* a = b^c */
@@ -1018,31 +854,21 @@ void iexp(ireg* a, ireg* b, ireg* c)
 	static unsigned long j;
 
 	if (b->value == NULL)
-	{
 		iinvparm("iexp");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("iexp");
-	}
 
 	if (c->value == NULL)
-	{
 		iinvparm("iexp");
-	}
 
 	if (c->digits < 1)
-	{
 		iinvparm("iexp");
-	}
 
 	imovk(a, 1);
 
 	if (isgn(c) <= 0)
-	{
 		return;
-	}
 
 	f = 0;
 
@@ -1051,9 +877,7 @@ void iexp(ireg* a, ireg* b, ireg* c)
 		for (j = 0x80000000; j >= 1; j >>= 1)
 		{
 			if (f)
-			{
 				isqu(a);
-			}
 
 			if (c->value[i] & j)
 			{
@@ -1076,31 +900,21 @@ void iexpmod(ireg* a, ireg* b, ireg* c, ireg* q)
 	static unsigned long j;
 
 	if (b->value == NULL)
-	{
 		iinvparm("iexpmod");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("iexpmod");
-	}
 
 	if (c->value == NULL)
-	{
 		iinvparm("iexpmod");
-	}
 
 	if (c->digits < 1)
-	{
 		iinvparm("iexpmod");
-	}
 
 	imovk(a, 1);
 
 	if (isgn(c) <= 0)
-	{
 		return;
-	}
 
 	f = 0;
 
@@ -1136,46 +950,30 @@ void iexpmodm2ke(ireg* a, ireg* b, ireg* c, ireg* q, long m, long k, ireg* e)
 	static unsigned long j;
 
 	if (b->value == NULL)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	if (c->value == NULL)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	if (c->digits < 1)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	if (q->value == NULL)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	if (q->digits < 1)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	if (isgn(q) <= 0)
-	{
 		iinvparm("iexpmodm2ke");
-	}
 
 	imovk(a, 1);
 
 	if (isgn(c) <= 0)
-	{
 		return;
-	}
 
 	f = 0;
 
@@ -1211,9 +1009,7 @@ void iexpmodm2ke(ireg* a, ireg* b, ireg* c, ireg* q, long m, long k, ireg* e)
 			utrim(a);
 
 			if (a->digits > q->digits + 8)
-			{
 				imod(a, q);
-			}
 		}
 	}
 
@@ -1226,36 +1022,24 @@ void igcd(ireg* a, ireg* b)
 	static long sb;
 
 	if (a->value == NULL)
-	{
 		iinvparm("igcd");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("igcd");
-	}
 
 	if (b->value == NULL)
-	{
 		iinvparm("igcd");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("igcd");
-	}
 
 	if (isgn(a) < 0)
-	{
 		ineg(a);
-	}
 
 	sb = isgn(b);
 
 	if (sb < 0)
-	{
 		ineg(b);
-	}
 
 	while (sb)
 	{
@@ -1270,9 +1054,7 @@ void igcd(ireg* a, ireg* b)
 		imod(b, a);
 
 		if (!usig(b))
-		{
 			return;
-		}
 	}
 }
 
@@ -1280,29 +1062,19 @@ void igcd(ireg* a, ireg* b)
 void igcdext(ireg* u, ireg* d, ireg* a, ireg* b)
 {
 	if (a->value == NULL)
-	{
 		iinvparm("igcdext");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("igcdext");
-	}
 
 	if (b->value == NULL)
-	{
 		iinvparm("igcdext");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("igcdext");
-	}
 
 	if (isgn(b) <= 0)
-	{
 		iinvparm("igcdext");
-	}
 
 	imov(d, a);
 	imod(d, b);
@@ -1367,12 +1139,12 @@ long ibit(ireg* a, long k)
 	i = k >> 5;
 
 	if (i >= a->digits)
-		return (0);
+		return 0;
 
 	if (a->value[i] & (1 << (k & 31)))
-		return (1);
+		return 1;
 
-	return (0);
+	return 0;
 }
 
 /* Return max{log(|a|), 0}. */
@@ -1383,14 +1155,10 @@ double ilog(ireg* a)
 	static double w;
 
 	if (a->value == NULL)
-	{
 		iinvparm("ilog");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("ilog");
-	}
 
 	utrim(a);
 	u = a->value[a->digits - 1];
@@ -1409,9 +1177,9 @@ double ilog(ireg* a)
 	w = u + v / 4294967296.0;
 
 	if (w <= 0)
-		return (0.0);
+		return 0.0;
 
-	return (log(w) + 32.0 * (a->digits - 1) * ilog2);
+	return log(w) + 32.0 * (a->digits - 1) * ilog2;
 }
 
 /* Set a = [b^(1/2)], res = b - [b^(1/2)]^2. */
@@ -1422,19 +1190,13 @@ void isqrt(ireg* a, ireg* b)
 	static double u;
 
 	if (b->value == NULL)
-	{
 		iinvparm("isqrt");
-	}
 
 	if (b->digits < 1)
-	{
 		iinvparm("isqrt");
-	}
 
 	if (isgn(b) < 0)
-	{
 		iinvparm("isqrt");
-	}
 
 	imovk(temp1, 1);
 
@@ -1508,27 +1270,19 @@ void idisp(ireg* a)
 	static long significant;
 
 	if (a->value == NULL)
-	{
 		iinvparm("idisp");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("idisp");
-	}
 
 	/* Decimal occupies at least log(2^32)/log(10^9) times as much space */
 	ddigits = ((9 * a->digits) >> 3) + 4;
 
 	if (res->value == NULL)
-	{
 		ualloc(res, ddigits, 1);
-	}
 
 	if (res->capacity < ddigits)
-	{
 		uextend(res, ddigits);
-	}
 
 	/* Repeatedly divide by 10^9, saving remainder starting at ddigits - 1 */
 	umov(res, a);
@@ -1544,9 +1298,7 @@ void idisp(ireg* a)
 
 	/* Print the remainders */
 	if (isgn(a) < 0)
-	{
 		printf("-");
-	}
 
 	significant = 0;
 
@@ -1558,15 +1310,11 @@ void idisp(ireg* a)
 			significant = 1;
 		}
 		else
-		{
 			printf("%09d", res->value[i]);
-		}
 	}
 
 	if (!significant)
-	{
 		printf("0");
-	}
 }
 
 /* Write an integer register in decimal to a file */
@@ -1578,27 +1326,19 @@ void idispf(FILE* f, ireg* a)
 	static long significant;
 
 	if (a->value == NULL)
-	{
 		iinvparm("idisp");
-	}
 
 	if (a->digits < 1)
-	{
 		iinvparm("idisp");
-	}
 
 	/* Decimal occupies at least log(2^32)/log(10^9) times as much space */
 	ddigits = ((9 * a->digits) >> 3) + 4;
 
 	if (res->value == NULL)
-	{
 		ualloc(res, ddigits, 1);
-	}
 
 	if (res->capacity < ddigits)
-	{
 		uextend(res, ddigits);
-	}
 
 	/* Repeatedly divide by 10^9, saving remainder starting at ddigits - 1 */
 	umov(res, a);
@@ -1614,9 +1354,7 @@ void idispf(FILE* f, ireg* a)
 
 	/* Print the remainders */
 	if (isgn(a) < 0)
-	{
 		fprintf(f, "-");
-	}
 
 	significant = 0;
 
@@ -1628,15 +1366,11 @@ void idispf(FILE* f, ireg* a)
 			significant = 1;
 		}
 		else
-		{
 			fprintf(f, "%09d", res->value[i]);
-		}
 	}
 
 	if (!significant)
-	{
 		fprintf(f, "0");
-	}
 }
 
 /* Invalid parameter */

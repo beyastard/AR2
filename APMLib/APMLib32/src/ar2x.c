@@ -58,29 +58,29 @@ extern double maxFFTerror = 0;
 double xsin(long n)
 {
 	if (n < FFTdimq1)
-		return (FFTsincos[n]);
+		return FFTsincos[n];
 
 	if (n < FFTdimq2)
-		return (FFTsincos[FFTdimq2 - n]);
+		return FFTsincos[FFTdimq2 - n];
 
 	if (n < FFTdimq3)
-		return (-FFTsincos[n - FFTdimq2]);
+		return -FFTsincos[n - FFTdimq2];
 
-	return (-FFTsincos[FFTdim - n]);
+	return -FFTsincos[FFTdim - n];
 }
 
 double xcos(long n)
 {
 	if (n < FFTdimq1)
-		return (FFTsincos[FFTdimq1 - n]);
+		return FFTsincos[FFTdimq1 - n];
 
 	if (n < FFTdimq2)
-		return (-FFTsincos[n - FFTdimq1]);
+		return -FFTsincos[n - FFTdimq1];
 
 	if (n < FFTdimq3)
-		return (-FFTsincos[FFTdimq3 - n]);
+		return -FFTsincos[FFTdimq3 - n];
 
-	return (FFTsincos[n - FFTdimq3]);
+	return FFTsincos[n - FFTdimq3];
 }
 
 /* Stop. Then exit if 'X' pressed */
@@ -116,9 +116,7 @@ void xfft_init(long n, long b)
 			v = (double*)realloc(FFTv1, sizeof(double) * n);
 
 			if (v != NULL)
-			{
 				FFTv1 = v;
-			}
 			else
 			{
 				printf("Unable to allocate FFT %d-vector in xfft_init\n", n);
@@ -136,9 +134,7 @@ void xfft_init(long n, long b)
 			v = (double*)realloc(FFTv2, sizeof(double) * n);
 
 			if (v != NULL)
-			{
 				FFTv2 = v;
-			}
 			else
 			{
 				printf("Unable to allocate FFT %d-vector in xfft_init\n", n);
@@ -156,9 +152,7 @@ void xfft_init(long n, long b)
 		v = (double*)realloc(FFTsincos, sizeof(double) * j);
 
 		if (v != NULL)
-		{
 			FFTsincos = v;
-		}
 		else
 		{
 			printf("Unable to allocate %d-vector for sin/cos table in xfft_init\n", j);
@@ -166,9 +160,7 @@ void xfft_init(long n, long b)
 		}
 
 		for (j = 0; j <= (n >> 2); j++)
-		{
 			FFTsincos[j] = sin(e * j);
-		}
 
 		FFTdim = n;
 		FFTdimq2 = (FFTdim >> 1);
@@ -228,6 +220,7 @@ void xfft_unpack(double *z, unsigned short *x, long n)
 	register long r;
 	register long rb;
 	register long half = n >> 1;
+
 	register double d;
 	register double e;
 	register double f;
@@ -248,9 +241,7 @@ void xfft_unpack(double *z, unsigned short *x, long n)
 			e = fabs(f - h);
 
 			if (e > maxFFTerror)
-			{
 				maxFFTerror = e;
-			}
 		}
 
 		f += g;
@@ -261,13 +252,9 @@ void xfft_unpack(double *z, unsigned short *x, long n)
 	}
 
 	if (g < TWO16)
-	{
 		x[n] = g;
-	}
 	else
-	{
 		maxFFTerror += 100;
-	}
 
 	x[n + 1] = 0;
 
@@ -295,8 +282,10 @@ void xfft_real_to_hermitian(double* z, long n)
 	register double cc3;
 	register double ss3;
 	register double e;
+
 	register long is;
 	register long id;
+
 	register long i0;
 	register long i1;
 	register long i2;
@@ -305,20 +294,25 @@ void xfft_real_to_hermitian(double* z, long n)
 	register long i5;
 	register long i6;
 	register long i7;
+
 	register long a;
 	register long a3;
 	register long scmask = FFTdim - 1;
 	register long dil;
+
 	long nn = n >> 1;
+
 	double t0;
 	double t1;
 	double t2;
 	double t3;
 	double t4;
 	double t5;
+
 	register long n2;
 	register long n4;
 	register long n8;
+
 	register long i;
 	register long j;
 
@@ -331,6 +325,7 @@ void xfft_real_to_hermitian(double* z, long n)
 		{
 			i0 = i1 - 1;
 			e = z[i0];
+
 			z[i0] = e + z[i1];
 			z[i1] = e - z[i1];
 		}
@@ -346,6 +341,7 @@ void xfft_real_to_hermitian(double* z, long n)
 		n2 <<= 1;
 		n4 = n2 >> 2;
 		n8 = n2 >> 3;
+
 		is = 0;
 		id = n2 << 1;
 
@@ -357,7 +353,9 @@ void xfft_real_to_hermitian(double* z, long n)
 				i1 = i0 + n4;
 				i2 = i1 + n4;
 				i3 = i2 + n4;
+
 				t0 = z[i3] + z[i2];
+
 				z[i3] -= z[i2];
 				z[i2] = z[i0] - t0;
 				z[i0] += t0;
@@ -369,8 +367,10 @@ void xfft_real_to_hermitian(double* z, long n)
 				i1 += n8;
 				i2 += n8;
 				i3 += n8;
+
 				t0 = (z[i2] + z[i3]) * SQRTHALF;
 				t1 = (z[i2] - z[i3]) * SQRTHALF;
+
 				z[i3] = z[i1] - t0;
 				z[i2] = -z[i1] - t0;
 				z[i1] = z[i0] - t1;
@@ -379,8 +379,7 @@ void xfft_real_to_hermitian(double* z, long n)
 
 			is = (id << 1) - n2;
 			id <<= 2;
-		}
-		while (is < n);
+		} while (is < n);
 
 		dil = FFTdim / n2;
 		a = dil;
@@ -445,23 +444,29 @@ void xfft_real_to_hermitian(double* z, long n)
 					i5 = i4 + n4;
 					i6 = i5 + n4;
 					i7 = i6 + n4;
+
 					t0 = z[i2] * cc1 + z[i6] * ss1;
 					t1 = z[i6] * cc1 - z[i2] * ss1;
 					t2 = z[i3] * cc3 + z[i7] * ss3;
 					t3 = z[i7] * cc3 - z[i3] * ss3;
+
 					t4 = t0 + t2;
 					t5 = t1 + t3;
 					t2 = t0 - t2;
 					t3 = t1 - t3;
+
 					t1 = z[i5] + t5;
 					z[i2] = t5 - z[i5];
 					z[i7] = t1;
+
 					t1 = z[i1] - t2;
 					z[i6] = -z[i1] - t2;
 					z[i3] = t1;
+
 					t0 = z[i0] + t4;
 					z[i5] = z[i0] - t4;
 					z[i0] = t0;
+
 					t0 = z[i4] + t3;
 					z[i4] -= t3;
 					z[i1] = t0;
@@ -487,8 +492,10 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 	register double cc3;
 	register double ss3;
 	register double e;
+
 	register long is;
 	register long id;
+
 	register long i0;
 	register long i1;
 	register long i2;
@@ -497,19 +504,24 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 	register long i5;
 	register long i6;
 	register long i7;
+
 	register long a;
 	register long a3;
 	register long scmask = FFTdim - 1;
 	register long dil;
+
 	long nn = n >> 1;
+
 	double t0;
 	double t1;
 	double t2;
 	double t3;
 	double t4;
+
 	long n2;
 	long n4;
 	long n8;
+
 	long i;
 	long j;
 
@@ -519,6 +531,7 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 	{
 		is = 0;
 		id = n2;
+
 		n2 >>= 1;
 		n4 = n2 >> 2;
 		n8 = n4 >> 1;
@@ -531,7 +544,9 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 				i1 = i0 + n4;
 				i2 = i1 + n4;
 				i3 = i2 + n4;
+
 				t0 = z[i0] - z[i2];
+
 				z[i0] += z[i2];
 				z[i1] += z[i1];
 				z[i2] = t0 - 2.0 * z[i3];
@@ -544,8 +559,10 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 				i1 += n8;
 				i2 += n8;
 				i3 += n8;
+
 				t0 = (z[i1] - z[i0]) * SQRTHALF;
 				t1 = (z[i3] + z[i2]) * SQRTHALF;
+
 				z[i0] += z[i1];
 				z[i1] = z[i3] - z[i2];
 				z[i2] = -2.0 * (t1 + t0);
@@ -620,18 +637,24 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 					i5 = i4 + n4;
 					i6 = i5 + n4;
 					i7 = i6 + n4;
+
 					t0 = z[i0] - z[i5];
 					z[i0] += z[i5];
+
 					t1 = z[i4] - z[i1];
 					z[i4] += z[i1];
+
 					t2 = z[i7] + z[i2];
 					z[i5] = z[i7] - z[i2];
+
 					t3 = z[i3] + z[i6];
 					z[i1] = z[i3] - z[i6];
+
 					t4 = t0 - t3;
 					t0 += t3;
 					t3 = t1 - t2;
 					t1 += t2;
+
 					z[i2] = t4 * cc1 + t3 * ss1;
 					z[i6] = -t3 * cc1 + t4 * ss1;
 					z[i3] = t0 * cc3 - t1 * ss3;
@@ -654,14 +677,14 @@ void xfft_inv_hermitian_to_real(double* z, long n)
 		{
 			i0 = i1 - 1;
 			e = z[i0];
+
 			z[i0] = e + z[i1];
 			z[i1] = e - z[i1];
 		}
 
 		is = (id << 1) - 1;
 		id <<= 2;
-	}
-	while (is < n);
+	} while (is < n);
 }
 
 void xfft_square_hermitian(double* b, long n)
@@ -678,6 +701,7 @@ void xfft_square_hermitian(double* b, long n)
 	{
 		c = b[k];
 		d = b[n - k];
+
 		b[n - k] = 2.0 * c * d;
 		b[k] = (c + d) * (c - d);
 	}
@@ -687,6 +711,7 @@ void xfft_mul_hermitian(double* a, double* b, int n)
 {
 	register int k;
 	register int half = n >> 1;
+
 	register double aa;
 	register double bb;
 	register double am;
@@ -701,6 +726,7 @@ void xfft_mul_hermitian(double* a, double* b, int n)
 		bb = b[k];
 		am = a[n - k];
 		bm = b[n - k];
+
 		a[k] = aa * bb - am * bm;
 		a[n - k] = aa * bm + am * bb;
 	}
@@ -2851,8 +2877,12 @@ Lnxtp4:
 void xdump(long* a, long d)
 {
 	static long i;
-	printf("%d ", d);
-	for (i = 0; i < d; i++) { printf("%d ", (unsigned long)a[i]); }
+
+	printf("%ld ", d);
+
+	for (i = 0; i < d; i++)
+		printf("%d ", (unsigned long)a[i]);
+
 	printf("\n");
 }
 
@@ -2860,8 +2890,12 @@ void xdump(long* a, long d)
 void xdumps(short* a, long d)
 {
 	static long i;
-	printf("%d ", d);
-	for (i = 0; i < d; i++) { printf("%d ", (unsigned short)a[i]); }
+
+	printf("%ld ", d);
+
+	for (i = 0; i < d; i++)
+		printf("%d ", (unsigned short)a[i]);
+
 	printf("\n");
 }
 
@@ -2869,7 +2903,11 @@ void xdumps(short* a, long d)
 void xdumpd(double* a, long d)
 {
 	static long i;
-	printf("%d ", d);
-	for (i = 0; i < d; i++) { printf("%e ", a[i]); }
+
+	printf("%ld ", d);
+
+	for (i = 0; i < d; i++)
+		printf("%e ", a[i]);
+
 	printf("\n");
 }

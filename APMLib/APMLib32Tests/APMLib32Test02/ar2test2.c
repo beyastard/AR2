@@ -32,16 +32,16 @@ static ireg rx;
 static ireg ry;
 static ireg rz;
 
-static ireg *a = &ra;
-static ireg *b = &rb;
-static ireg *c = &rc;
-static ireg *d = &rd;
-static ireg *e = &re;
-static ireg *v = &rv;
-static ireg *w = &rw;
-static ireg *x = &rx;
-static ireg *y = &ry;
-static ireg *z = &rz;
+static ireg* a = &ra;
+static ireg* b = &rb;
+static ireg* c = &rc;
+static ireg* d = &rd;
+static ireg* e = &re;
+static ireg* v = &rv;
+static ireg* w = &rw;
+static ireg* x = &rx;
+static ireg* y = &ry;
+static ireg* z = &rz;
 
 static double dd;
 static long   dl;
@@ -152,6 +152,7 @@ int main(int argc, char** argv)
 	            "25600");
 	ttest_ieval("q20!*q21!*q22!*q23!*q24!*q25!*q26!",
 	            "3744121748875552526852535447127850026923882450188216789264575259227427900097600");
+
 	ttest_ieval("(-1)!", "1");
 	ttest_ieval("0!", "1");
 	ttest_ieval("1!", "1");
@@ -160,6 +161,7 @@ int main(int argc, char** argv)
 	ttest_ieval("6!", "720");
 	ttest_ieval("7!", "5040");
 	ttest_ieval("(-1)#", "1");
+
 	ttest_ieval("0#", "1");
 	ttest_ieval("1#", "1");
 	ttest_ieval("2#", "2");
@@ -243,6 +245,7 @@ int main(int argc, char** argv)
 	imov(c, res);
 	tcheckd(b, "256", "isqrt", 65537);
 	tcheckd(c, "1", "isqrt res", 65537);
+
 	ttest_ilog_isqrt(10);
 	ttest_ilog_isqrt(21);
 	ttest_ilog_isqrt(32);
@@ -292,9 +295,13 @@ int main(int argc, char** argv)
 
 void ttestigcd(char* cx, char* cy)
 {
-	static long i, j, sx, sy;
+	static long i;
+	static long j;
+	static long sx;
+	static long sy;
 
-	imovd(x, cx); imovd(y, cy);
+	imovd(x, cx);
+	imovd(y, cy);
 
 	for (i = 1; i <= 10; i++)
 	{
@@ -326,9 +333,7 @@ void ttestigcd(char* cx, char* cy)
 					tcheckd(c, "1", "igcd (c, d)", j);
 				}
 				else
-				{
 					tcheckd(a, "0", "igcd (0, 0)", j);
-				}
 			}
 		}
 
@@ -352,16 +357,19 @@ void ttestigcdext(char* cx, char* cy)
 		{
 			j = 1000 * (sx + 2) + i;
 
-			imov(a, x); imulk(a, sx);
+			imov(a, x);
+			imulk(a, sx);
 			imov(b, y);
 			igcdext(e, d, a, b);
-			imov(z, x); imulk(z, sx);
+			imov(z, x);
+			imulk(z, sx);
 			isub(z, a);
 			tcheckd(z, "0", "igcdext a", j);
 			imov(z, y);
 			isub(z, b);
 			tcheckd(z, "0", "igcdext b", j);
-			imov(v, x); imulk(v, sx);
+			imov(v, x);
+			imulk(v, sx);
 			idiv(v, d);
 			imov(z, res);
 			tcheckd(z, "0", "igcdext res a/d", j);
@@ -412,6 +420,7 @@ void ttestiexp(char* cx, char* cy, char* cz)
 			iexpmod(c, x, y, z); /* c = x^y (mod z) */
 			imovk(d, 1);
 			imovk(e, 1);
+
 			i = 0;
 
 			while (isgn(y) >= 1)
@@ -420,6 +429,7 @@ void ttestiexp(char* cx, char* cy, char* cz)
 				imul(e, x);
 				imod(e, z); /* e = x^y (mod z) */
 				isubk(y, 1);
+
 				i++;
 			}
 
@@ -438,6 +448,7 @@ void ttest_xnxtprmk(void)
 	static long k;
 
 	k = 0;
+
 	tprint("Check xnxtprmk ");
 
 	for (i = 1; i <= 20000; i++)
@@ -469,6 +480,7 @@ void ttest_ilog_isqrt(long k)
 		dd = ilog(a);
 		dl = dd;
 		el = ed;
+
 		imovk(b, dl - el);
 		tcheckd(b, "0", "ilog", dl);
 		imov(b, a);
