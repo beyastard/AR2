@@ -431,6 +431,7 @@ int main(int argc, char** argv)
 	isub(e, c);
 	isub(e, c);
 	isub(e, c);
+
 	isub(e, d);
 	isub(e, d);
 	tcheckd(e, "0", "isub 0", 15);
@@ -466,6 +467,7 @@ int main(int argc, char** argv)
 	isub(e, b);
 	isub(e, b);
 	isub(e, b);
+
 	isub(e, d);
 	isub(e, d);
 	tcheckd(e, "0", "isub 0", 51);
@@ -742,7 +744,6 @@ int main(int argc, char** argv)
 	isqu(a);
 	imovk(b, isgn(a));
 	tcheckd(b, "1", "isgn 1", 8);
-
 	ineg(a);
 	imovk(b, isgn(a));
 	tcheckd(b, "-1", "isgn -1", 9);
@@ -833,7 +834,6 @@ int main(int argc, char** argv)
 	ttbit("3333333333333333333333333333333333333");
 
 	tprint("Check icmp\n");
-
 	/* All small */
 	imovk(a, 5);
 	imovk(b, 3);
@@ -1542,11 +1542,7 @@ void ttestdivmod(char* n, char* m, long to, long mult)
 	imov(g, c);
 	ineg(g);
 	umodk(g, k); /* g = -(n mod m) */
-
-	if (isgn(g) < 0)
-	{
-		iadd(g, b);
-	} /* g = (-n mod m) */
+	if (isgn(g) < 0) { iadd(g, b); } /* g = (-n mod m) */
 
 	for (i = 0; i <= to; i++)
 	{
@@ -1590,17 +1586,8 @@ void ttest2k(long k, long i)
 	imov(e, h);
 	imov(f, h);
 	imov(g, h);
-
-	for (j = 1; j <= i; j++)
-	{
-		imulk(d, 2);
-	}
-
-	for (j = 1; j <= i; j++)
-	{
-		idivk(f, 2);
-	}
-
+	for (j = 1; j <= i; j++) { imulk(d, 2); }
+	for (j = 1; j <= i; j++) { idivk(f, 2); }
 	imov(x, f);
 	imul(x, d);
 	isub(e, x);
@@ -1625,12 +1612,7 @@ void ttest2k(long k, long i)
 	ineg(a);
 	imod2k(a, i);
 	ineg(a);
-
-	if (i)
-	{
-		iadd(a, d);
-	}
-
+	if (i) { iadd(a, d); }
 	tcheckr(a, e, "imod2k neg", ki);
 }
 
@@ -1641,13 +1623,11 @@ void ttbit(char* dig)
 
 	imovd(a, dig);
 	imovk(b, 0);
-
 	for (i = 0; i < ilen(a); i++)
 	{
 		imovk(c, ibit(a, i));
 		imul2k(c, i);
 		iadd(b, c);
 	}
-
 	tcheckd(b, dig, "ibit", 0);
 }
