@@ -5,11 +5,11 @@
 #include <time.h>
 #include <math.h>
 
-#include "ar2x.h"
-#include "ar2u.h"
-#include "ar2i.h"
-#include "ar2e.h"
-#include "ar2w.h"
+#include "fastmath.h"
+#include "regmem.h"
+#include "intmath.h"
+#include "eval.h"
+#include "wmod.h"
 
 #include "vfypr32.h"
 

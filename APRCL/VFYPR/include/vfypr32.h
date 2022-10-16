@@ -760,8 +760,6 @@ and testing of VFYPR.
 
 #include <stdio.h>
 
-#include "ar2u.h"
-
 #define kNPdim    (7 + 1)
 #define kPWdim    (64 + 1)
 #define kNQdim    (388 + 1)
