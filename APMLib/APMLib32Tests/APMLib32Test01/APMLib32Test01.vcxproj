@@ -84,11 +84,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\TestCommon\ar2t.c" />
-    <ClCompile Include="ar2test1.c" />
+    <ClInclude Include="..\TestCommon\ar2t.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\TestCommon\ar2t.h" />
+    <ClCompile Include="..\TestCommon\ar2t.c" />
+    <ClCompile Include="ar2test1.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

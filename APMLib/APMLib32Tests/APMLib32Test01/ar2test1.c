@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ar2x.h"
-#include "ar2u.h"
-#include "ar2i.h"
-#include "ar2e.h"
+#include "fastmath.h"
+#include "regmem.h"
+#include "intmath.h"
+#include "eval.h"
 #include "ar2t.h"
 
 void ttestdivmod(char* n, char* m, long to, long mult);

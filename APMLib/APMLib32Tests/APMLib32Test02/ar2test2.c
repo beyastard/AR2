@@ -4,12 +4,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "ar2x.h"
-#include "ar2u.h"
-#include "ar2i.h"
+#include "fastmath.h"
+#include "regmem.h"
+#include "intmath.h"
 #include "ar2t.h"
-#include "ar2e.h"
-#include "ar2p.h"
+#include "eval.h"
+#include "primes.h"
 
 void ttestigcd(char* cx, char* cy);
 void ttestigcdext(char* cx, char* cy);

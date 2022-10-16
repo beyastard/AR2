@@ -13,51 +13,396 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\fastmath">
+      <UniqueIdentifier>{5f369b4b-ee6a-4a98-8942-3324237de6d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fastmath\FFT">
+      <UniqueIdentifier>{61887c4d-f701-4dd2-88fd-6c4272a0e428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fastmath\Add">
+      <UniqueIdentifier>{35835a11-3dcc-44bf-8bb6-582cec7b6afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fastmath\Sub">
+      <UniqueIdentifier>{899bb3ea-88a1-4717-85b2-b57a09de08db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fastmath\Div">
+      <UniqueIdentifier>{b70dbdd7-33de-41f0-8aaa-5500cba1b93a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fastmath\Mov">
+      <UniqueIdentifier>{d4adc141-f642-4fe2-9fa0-b46fe05f21f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fastmath\Mul">
+      <UniqueIdentifier>{77077461-9d52-42a5-8ad2-d8e45a2b81aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\regmem">
+      <UniqueIdentifier>{b93e7391-687a-47ba-a1a9-eb0953ae16d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mod">
+      <UniqueIdentifier>{90b0e6f0-7e6b-4529-8f77-3eefd85e7315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primes">
+      <UniqueIdentifier>{7c74cc70-e1e6-4162-8575-6b4be906e904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\exp">
+      <UniqueIdentifier>{0d35e7ea-f078-4b93-a5e2-b02301bd8156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\eval">
+      <UniqueIdentifier>{31a05269-e041-40f9-bef9-259f7fda060f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\intmath">
+      <UniqueIdentifier>{71af80dd-6ed8-4b93-8990-ab0558ade84b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\ar2e.h">
+    <ClInclude Include="include\fastmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ar2f.h">
+    <ClInclude Include="include\regmem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ar2i.h">
+    <ClInclude Include="include\wmod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ar2p.h">
+    <ClInclude Include="include\primes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ar2u.h">
+    <ClInclude Include="include\exp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ar2x.h">
+    <ClInclude Include="include\eval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ar2w.h">
+    <ClInclude Include="include\intmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ar2e.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\xsin.c">
+      <Filter>Source Files\fastmath</Filter>
     </ClCompile>
-    <ClCompile Include="src\ar2f.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\xcos.c">
+      <Filter>Source Files\fastmath</Filter>
     </ClCompile>
-    <ClCompile Include="src\ar2i.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\stop.c">
+      <Filter>Source Files\fastmath</Filter>
     </ClCompile>
-    <ClCompile Include="src\ar2p.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\give_up.c">
+      <Filter>Source Files\fastmath</Filter>
     </ClCompile>
-    <ClCompile Include="src\ar2u.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\xfft_unpack.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
     </ClCompile>
-    <ClCompile Include="src\ar2x.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\xfft_square_hermitian.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
     </ClCompile>
-    <ClCompile Include="src\ar2w.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\fastmath\xfft_real_to_hermitian.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xfft_pack.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xfft_mul_hermitian.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xfft_inv_hermitian_to_real.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xfft_init.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xfft_free.c">
+      <Filter>Source Files\fastmath\FFT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xneg.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xcmp.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xcmps.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsig.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdig.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xcar.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xbor.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsqu.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsep2k.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xnxtprmk.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdump.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdumps.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdumpd.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\fastmath.c">
+      <Filter>Source Files\fastmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xadd.c">
+      <Filter>Source Files\fastmath\Add</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xaddf.c">
+      <Filter>Source Files\fastmath\Add</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xaddk.c">
+      <Filter>Source Files\fastmath\Add</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xadds.c">
+      <Filter>Source Files\fastmath\Add</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdiv.c">
+      <Filter>Source Files\fastmath\Div</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdiv2d.c">
+      <Filter>Source Files\fastmath\Div</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdiv2k.c">
+      <Filter>Source Files\fastmath\Div</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xdivk.c">
+      <Filter>Source Files\fastmath\Div</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmov.c">
+      <Filter>Source Files\fastmath\Mov</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmovf.c">
+      <Filter>Source Files\fastmath\Mov</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmovk.c">
+      <Filter>Source Files\fastmath\Mov</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmovks.c">
+      <Filter>Source Files\fastmath\Mov</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmovs.c">
+      <Filter>Source Files\fastmath\Mov</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmovz.c">
+      <Filter>Source Files\fastmath\Mov</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmul.c">
+      <Filter>Source Files\fastmath\Mul</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmul2d.c">
+      <Filter>Source Files\fastmath\Mul</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmul2k.c">
+      <Filter>Source Files\fastmath\Mul</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmulk.c">
+      <Filter>Source Files\fastmath\Mul</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsubs.c">
+      <Filter>Source Files\fastmath\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsubk.c">
+      <Filter>Source Files\fastmath\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsubf.c">
+      <Filter>Source Files\fastmath\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xsub.c">
+      <Filter>Source Files\fastmath\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmod.c">
+      <Filter>Source Files\fastmath\Div</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmath\xmodk.c">
+      <Filter>Source Files\fastmath\Div</Filter>
+    </ClCompile>
+    <ClCompile Include="src\regmem\ualloc.c">
+      <Filter>Source Files\regmem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\regmem\ufree.c">
+      <Filter>Source Files\regmem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\regmem\uextend.c">
+      <Filter>Source Files\regmem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\regmem\usep2k.c">
+      <Filter>Source Files\regmem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\regmem\udump.c">
+      <Filter>Source Files\regmem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\wmod.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\wmods.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\wmulmod.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\wexpmod.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\winvmod.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\wexp.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\wlen.c">
+      <Filter>Source Files\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\primes\ar2p_get_primes.c">
+      <Filter>Source Files\primes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\primes\ar2p_check_pr_tab.c">
+      <Filter>Source Files\primes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\primes\ar2p_load_pr_tab.c">
+      <Filter>Source Files\primes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\primes\inxtprm.c">
+      <Filter>Source Files\primes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\primes\primes.c">
+      <Filter>Source Files\primes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exp\fexpmod.c">
+      <Filter>Source Files\exp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exp\fexpmodm2ke.c">
+      <Filter>Source Files\exp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exp\ffermatm2ke.c">
+      <Filter>Source Files\exp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\eval.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\eval_break.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\eval_factorial.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\eval_prime_product.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\eval_compute.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\eval_push.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eval\ieval.c">
+      <Filter>Source Files\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\intmath.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imov.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imovk.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imovd.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\iadd.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\iaddk.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\isub.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\isgn.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\icmp.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\icmpk.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\isqu.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imul.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imulk.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imul2k.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\idiv.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\idivk.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\idiv2k.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imod.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imodk.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\imod2k.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\iexp.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\iexpmod.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\iexpmodm2ke.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\igcd.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\igcdext.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\ilen.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\ibit.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\ilog.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\isqrt.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\idisp.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\idispf.c">
+      <Filter>Source Files\intmath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intmath\iinvparm.c">
+      <Filter>Source Files\intmath</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

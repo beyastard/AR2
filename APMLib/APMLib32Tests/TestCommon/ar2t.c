@@ -5,9 +5,9 @@
 #include <conio.h>
 #include <stdarg.h>
 
-#include "ar2x.h"
-#include "ar2u.h"
-#include "ar2i.h"
+#include "fastmath.h"
+#include "regmem.h"
+#include "intmath.h"
 #include "ar2t.h"
 
 long quit = 0;
