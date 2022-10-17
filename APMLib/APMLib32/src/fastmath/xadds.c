@@ -23,17 +23,17 @@ long xadds(long* a, long* b, long da, long db)
 		mov    ecx,db
 		
 		mov    Zsg,0FFFFFFFFh
-		mov    Zbp,EBP
+		mov    Zsi,ESI
         mov    Zdi,EDI
 
         mov    EDI,EAX           ; EDI = &a
         sub    EBX,ECX           ; EBX = d(a) - d(b)
         clc                      ; clear carry
 LaddB:
-		mov    EBP,[EDX]         ; EBP = b_i
+		mov    ESI,[EDX]         ; EBP = b_i
         mov    EAX,[EDI]         ; EAX = a_i
         lea    EDX,[EDX+4]
-        adc    EAX,EBP           ; EAX = a_i + b_i + carry 
+        adc    EAX,ESI           ; EAX = a_i + b_i + carry 
         dec    ECX
         mov    [EDI],EAX         ; Move to a
         lea    EDI,[EDI+4]
@@ -42,12 +42,12 @@ LaddB:
 
         cmp    EBX,0 
         jbe    LaddX             ; d(a) = d(b)
-        sar    EBP,31 
-        and    EBP,Zsg           ; EBP = b sign bits
+        sar    ESI,31 
+        and    ESI,Zsg           ; ESI = b sign bits
         sahf                     ; Restore carry
 LaddD:
 		mov    EAX,[EDI]         ; EAX = a_i
-        adc    EAX,EBP           ; EAX = a_i + b sign bits + carry 
+        adc    EAX,ESI           ; EAX = a_i + b sign bits + carry 
         dec    EBX
         mov    [EDI],EAX         ; Move to a
         lea    EDI,[EDI+4]
@@ -55,7 +55,7 @@ LaddD:
         lahf                     ; Carry flag to AH
 LaddX:
 		mov    EDI,Zdi
-        mov    EBP,Zbp
+        mov    ESI,Zsi
         
 		mov    edx,Zdx
 		mov    ebx,Zbx

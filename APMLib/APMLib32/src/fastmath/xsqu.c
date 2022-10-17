@@ -30,7 +30,7 @@ Lsqub:
 Lsquc:
 		mov    ECX,[EDI]          ; ECX = a_i
         cmp    ECX,0
-        je     Lsquu              ; Don't bother if a_i = 0
+        je     Lsquu              ; Do not bother if a_i = 0
         mov    EBX,EDI            ; EBX = &a_i 
         sub    EBX,EBP            ; EBX = &a_i - &a
         mov    dword ptr[EDI],0   ; Zap a_i in a

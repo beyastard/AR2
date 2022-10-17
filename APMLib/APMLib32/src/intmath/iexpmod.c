@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = (b^c mod q)
@@ -5,20 +7,7 @@
 // Assumes b, c >= 0, q > 0
 void iexpmod(ireg* a, ireg* b, ireg* c, ireg* q)
 {
-	static long i;
-	static long f;
-	static unsigned long j;
-
-	if (b->value == NULL)
-		iinvparm("iexpmod");
-
-	if (b->digits < 1)
-		iinvparm("iexpmod");
-
-	if (c->value == NULL)
-		iinvparm("iexpmod");
-
-	if (c->digits < 1)
+	if (b->value == NULL || c->value == NULL || b->digits < 1 || c->digits < 1)
 		iinvparm("iexpmod");
 
 	imovk(a, 1);
@@ -26,11 +15,11 @@ void iexpmod(ireg* a, ireg* b, ireg* c, ireg* q)
 	if (isgn(c) <= 0)
 		return;
 
-	f = 0;
+	long f = 0;
 
-	for (i = c->digits - 1; i >= 0; i--)
+	for (long i = c->digits - 1; i >= 0; i--)
 	{
-		for (j = 0x80000000; j >= 1; j >>= 1)
+		for (unsigned long j = 0x80000000; j >= 1; j >>= 1)
 		{
 			if (f)
 			{
@@ -38,6 +27,7 @@ void iexpmod(ireg* a, ireg* b, ireg* c, ireg* q)
 				imod(a, q);
 			}
 
+			assert(c->value != NULL);
 			if (c->value[i] & j)
 			{
 				imul(a, b);

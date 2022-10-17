@@ -1,19 +1,12 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = a - b
 void isub(ireg* a, ireg *b)
 {
 	static long f;
-	if (a->value == NULL)
-		iinvparm("isub");
-
-	if (b->value == NULL)
-		iinvparm("isub");
-
-	if (a->digits < 1)
-		iinvparm("isub");
-
-	if (b->digits < 1)
+	if (a->value == NULL || b->value == NULL || a->digits < 1 || b->digits < 1)
 		iinvparm("isub");
 
 	// Extend a if shorter than b
@@ -22,6 +15,7 @@ void isub(ireg* a, ireg *b)
 		if (a->capacity < b->digits)
 			uextend(a, b->digits);
 
+		assert(a->value != NULL);
 		xmovz(&a->value[a->digits], b->digits - a->digits);
 		a->digits = b->digits;
 	}

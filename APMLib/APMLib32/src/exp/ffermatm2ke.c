@@ -21,8 +21,5 @@ long ffermatm2ke(long m, long k, ireg* e, long g, void (fsqu)(ireg* a))
 	imovk(b, g);
 	fexpmodm2ke(a, b, q, q, m, k, e, fsqu);
 
-	if (icmp(a, b))
-		return 0;
-	else
-		return 1;
+	return icmp(a, b) ? 0 : 1;
 }

@@ -1,19 +1,13 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = a + b
 void iadd(ireg* a, ireg* b)
 {
-	static long f;
-	if (a->value == NULL)
-		iinvparm("iadd");
+	long f;
 
-	if (b->value == NULL)
-		iinvparm("iadd");
-
-	if (a->digits < 1)
-		iinvparm("iadd");
-
-	if (b->digits < 1)
+	if (a->value == NULL || b->value == NULL || a->digits < 1 || b->digits < 1)
 		iinvparm("iadd");
 
 	// Extend a if shorter than b
@@ -22,6 +16,7 @@ void iadd(ireg* a, ireg* b)
 		if (a->capacity < b->digits)
 			uextend(a, b->digits);
 
+		assert(a->value != NULL);
 		xmovz(&a->value[a->digits], b->digits - a->digits);
 		a->digits = b->digits;
 	}
@@ -36,6 +31,7 @@ void iadd(ireg* a, ireg* b)
 			if (a->capacity <= a->digits)
 				uextend(a, a->digits + 1);
 
+			assert(a->value != NULL);
 			a->value[a->digits] = 1;
 			a->digits++;
 		}

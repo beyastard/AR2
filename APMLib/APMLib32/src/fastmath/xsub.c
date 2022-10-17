@@ -23,17 +23,17 @@ long xsub(long* a, long* b, long da, long db)
 		mov    ecx,db
 		
 		mov    Zsg,0
-		mov    Zbp,EBP
+		mov    Zsi,ESI
         mov    Zdi,EDI
 
         mov    EDI,EAX           ; EDI = &a
         sub    EBX,ECX           ; EBX = d(a) - d(b)
         clc                      ; clear carry
 LsubB:
-		mov    EBP,[EDX]         ; EBP = b_i
+		mov    ESI,[EDX]         ; ESI = b_i
         mov    EAX,[EDI]         ; EAX = a_i
         lea    EDX,[EDX+4]
-        sbb    EAX,EBP           ; EAX = a_i - b_i - carry
+        sbb    EAX,ESI           ; EAX = a_i - b_i - carry
         dec    ECX
         mov    [EDI],EAX         ; Move to a
         lea    EDI,[EDI+4]
@@ -42,12 +42,12 @@ LsubB:
 
         cmp    EBX,0 
         jbe    LsubX             ; d(a) = d(b)
-        sar    EBP,31 
-        and    EBP,Zsg           ; EBP = b sign bits
+        sar    ESI,31 
+        and    ESI,Zsg           ; ESI = b sign bits
         sahf                     ; Restore carry flag
 LsubD:
 		mov    EAX,[EDI]         ; EAX = a_i
-        sbb    EAX,EBP           ; EAX = a_i - b sign bits - carry 
+        sbb    EAX,ESI           ; EAX = a_i - b sign bits - carry 
         dec    EBX
         mov    [EDI],EAX         ; Move to a
         lea    EDI,[EDI+4]
@@ -55,7 +55,7 @@ LsubD:
         lahf                     ; Carry flag to AH
 LsubX:
 		mov    EDI,Zdi
-        mov    EBP,Zbp
+        mov    ESI,Zsi
         
 		mov    edx,Zdx
 		mov    ebx,Zbx

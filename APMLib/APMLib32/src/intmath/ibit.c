@@ -4,15 +4,7 @@
 // Bit 0 is the units bit.
 long ibit(ireg* a, long k)
 {
-	static long i;
+	const long i = k >> 5;
 
-	i = k >> 5;
-
-	if (i >= a->digits)
-		return 0;
-
-	if (a->value[i] & (1 << (k & 31)))
-		return 1;
-
-	return 0;
+	return i >= a->digits ? 0 : a->value[i] & 1 << (k & 31) ? 1 : 0;
 }

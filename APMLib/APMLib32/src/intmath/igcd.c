@@ -5,16 +5,7 @@ void igcd(ireg* a, ireg* b)
 {
 	static long sb;
 
-	if (a->value == NULL)
-		iinvparm("igcd");
-
-	if (a->digits < 1)
-		iinvparm("igcd");
-
-	if (b->value == NULL)
-		iinvparm("igcd");
-
-	if (b->digits < 1)
+	if (a->value == NULL || b->value == NULL || a->digits < 1 || b->digits < 1)
 		iinvparm("igcd");
 
 	if (isgn(a) < 0)

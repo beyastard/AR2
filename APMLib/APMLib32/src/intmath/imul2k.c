@@ -5,10 +5,7 @@ void imul2k(ireg* a, long k)
 {
 	static long da;
 
-	if (a->value == NULL)
-		iinvparm("imul2k");
-
-	if (a->digits < 1)
+	if (a->value == NULL || a->digits < 1)
 		iinvparm("imul2k");
 
 	da = (k + 31) >> 5;

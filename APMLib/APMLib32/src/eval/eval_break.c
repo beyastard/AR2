@@ -7,7 +7,7 @@ void eval_break(void)
 		return;
 
 	while (_kbhit())
-		_getch();
+		(void)_getch();
 
 	printf("Interrupted: Press X to terminate, or ENTER to continue.\n");
 

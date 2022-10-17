@@ -116,7 +116,7 @@ void xfft_real_to_hermitian(double* z, long n)
 		{
 			a3 = (a + (a << 1)) & scmask;
 
-			/* cc1 = xcos(a) */
+			//cc1 = xcos(a);
 			if (a < FFTdimq1)
 				cc1 = FFTsincos[FFTdimq1 - a];
 			else if (a < FFTdimq2)
@@ -126,7 +126,7 @@ void xfft_real_to_hermitian(double* z, long n)
 			else
 				cc1 = FFTsincos[a - FFTdimq3];
 
-			/* cc3 = xcos(a3) */
+			//cc3 = xcos(a3);
 			if (a3 < FFTdimq1)
 				cc3 = FFTsincos[FFTdimq1 - a3];
 			else if (a3 < FFTdimq2)
@@ -136,7 +136,7 @@ void xfft_real_to_hermitian(double* z, long n)
 			else
 				cc3 = FFTsincos[a3 - FFTdimq3];
 
-			/* ss1 = xsin(a); */
+			//ss1 = xsin(a);
 			if (a < FFTdimq1)
 				ss1 = FFTsincos[a];
 			else if (a < FFTdimq2)
@@ -146,7 +146,7 @@ void xfft_real_to_hermitian(double* z, long n)
 			else
 				ss1 = -FFTsincos[FFTdim - a];
 
-			/* ss3 = xsin(a3); */
+			//ss3 = xsin(a3);
 			if (a3 < FFTdimq1)
 				ss3 = FFTsincos[a3];
 			else if (a3 < FFTdimq2)

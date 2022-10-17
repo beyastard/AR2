@@ -7,13 +7,7 @@ void isqrt(ireg* a, ireg* b)
 	static unsigned long w;
 	static double u;
 
-	if (b->value == NULL)
-		iinvparm("isqrt");
-
-	if (b->digits < 1)
-		iinvparm("isqrt");
-
-	if (isgn(b) < 0)
+	if (b->value == NULL || b->digits < 1 || isgn(b) < 0)
 		iinvparm("isqrt");
 
 	imovk(temp1, 1);

@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "regmem.h"
 
 // Split a into two parts, a and b, at 2^k
@@ -25,6 +27,7 @@ void usep2k(ireg* a, ireg* b, long k)
 		if (b->value == NULL)
 			ualloc(b, 8, 1);
 
+		assert(b->value != NULL);
 		b->value[0] = 0;
 		b->digits = 1;
 	}

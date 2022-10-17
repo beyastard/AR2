@@ -3,19 +3,7 @@
 // Return u, d, where a*u = d (mod b), d = gcd(a, b)
 void igcdext(ireg* u, ireg* d, ireg* a, ireg* b)
 {
-	if (a->value == NULL)
-		iinvparm("igcdext");
-
-	if (a->digits < 1)
-		iinvparm("igcdext");
-
-	if (b->value == NULL)
-		iinvparm("igcdext");
-
-	if (b->digits < 1)
-		iinvparm("igcdext");
-
-	if (isgn(b) <= 0)
+	if (a->value == NULL || b->value == NULL || a->digits < 1 || b->digits < 1 || isgn(b) <= 0)
 		iinvparm("igcdext");
 
 	imov(d, a);

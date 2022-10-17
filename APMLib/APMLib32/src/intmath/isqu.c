@@ -7,10 +7,7 @@ void isqu(ireg* a)
 	static long da4;
 	register long L;
 
-	if (a->value == NULL)
-		iinvparm("isqu");
-
-	if (a->digits < 1)
+	if (a->value == NULL || a->digits < 1)
 		iinvparm("isqu");
 
 	utrim(a);

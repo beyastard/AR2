@@ -79,7 +79,7 @@ Ldive:
 ; for (i = d(a) - d(b); i >= 0; i--)
 ;
 ; Calculation of q_i is based on Algorithm D in 
-; 4.3.1 of D. Knuth's "Semi-numerical Algorithms"
+; 4.3.1 of D. Knuth - "Semi-numerical Algorithms"
 Ldivf:
 		mov    EDI,Zdivai           ; EDI = &a_i
         mov    ECX,Zdivdb           ; ECX = d(b)

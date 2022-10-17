@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = (a mod b) >= 0, b > 0
@@ -5,19 +7,7 @@
 // (b is trimmed by this routine)
 void imod(ireg* a, ireg* b)
 {
-	if (a->value == NULL)
-		iinvparm("imod");
-
-	if (a->digits < 1)
-		iinvparm("imod");
-
-	if (b->value == NULL)
-		iinvparm("imod");
-
-	if (b->digits < 1)
-		iinvparm("imod");
-
-	if (isgn(b) <= 0)
+	if (a->value == NULL || b->value == NULL || a->digits < 1 || b->digits < 1 || isgn(b) <= 0)
 		iinvparm("imod");
 
 	utrim(a);
@@ -39,5 +29,8 @@ void imod(ireg* a, ireg* b)
 			iadd(a, b);
 	}
 	else // b->digits = 1
-		imodk(a, b->value[0]);
+    {
+		assert(b->value != NULL);
+        imodk(a, b->value[0]);
+    }
 }

@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "exp.h"
 
 // a = (b^c mod q), using squaring function fsqu
@@ -9,21 +11,10 @@ void fexpmod(ireg* a, ireg* b, ireg* c, ireg* q, void (fsqu)(ireg* a))
 	static long f;
 	static unsigned long j;
 
-	if (b->value == NULL)
+	if (b->value == NULL || c->value == NULL || b->digits < 1 || c->digits < 1)
 		iinvparm("fexpmod");
 
-	if (b->digits < 1)
-		iinvparm("fexpmod");
-
-	if (c->value == NULL)
-		iinvparm("fexpmod");
-
-	if (c->digits < 1)
-	{
-		iinvparm("fexpmod");
-	}
-
-	imovk(a, 1);
+    imovk(a, 1);
 
 	if (isgn(c) <= 0)
 		return;
@@ -40,6 +31,7 @@ void fexpmod(ireg* a, ireg* b, ireg* c, ireg* q, void (fsqu)(ireg* a))
 				imod(a, q);
 			}
 
+			assert(c->value != NULL);
 			if (c->value[i] & j)
 			{
 				imul(a, b);

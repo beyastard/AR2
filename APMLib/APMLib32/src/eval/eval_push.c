@@ -2,10 +2,7 @@
 
 void eval_push(long key)
 {
-	if (key < 24)
-		eval_compute(key);
-	else
-		eval_compute(eval_stp);
+	key < 24 ? eval_compute(key) : eval_compute(eval_stp);
 
 	eval_ostack[eval_ptr] = eval_lev + key;
 

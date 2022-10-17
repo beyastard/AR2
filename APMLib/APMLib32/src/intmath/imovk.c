@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = k, -2^31 < k < 2^31
@@ -11,11 +13,13 @@ void imovk(ireg* a, long k)
 
 	if (k >= 0)
 	{
+		assert(a->value != NULL);
 		a->value[0] = k;
 		a->flags = 0;
 	}
 	else
 	{
+		assert(a->value != NULL);
 		a->value[0] = -k;
 		a->flags = NegativeReg;
 	}

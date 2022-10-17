@@ -17,20 +17,20 @@ void xsubf(long* a, long* b, long da)
 		mov    ebx,da
 		
 		mov    Zcx,ECX
-        mov    Zbp,EBP
+        mov    Zdi,EDI
 
         clc                      ; clear carry
 LsubfB:
-		mov    EBP,[EDX]         ; EBP = b_i
+		mov    EDI,[EDX]         ; EDI = b_i
         mov    ECX,[EAX]         ; ECX = a_i
         lea    EDX,[EDX+4]
-        sbb    ECX,EBP           ; ECX = a_i - b_i - borrow
+        sbb    ECX,EDI           ; ECX = a_i - b_i - borrow
         dec    EBX
         mov    [EAX],ECX         ; Move to a
         lea    EAX,[EAX+4]
         jg     LsubfB            ; More digits
 
-        mov    EBP,Zbp
+        mov    EDI,Zdi
         mov    ECX,Zcx
         
 		mov    edx,Zdx

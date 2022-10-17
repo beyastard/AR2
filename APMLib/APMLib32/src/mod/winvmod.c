@@ -23,8 +23,8 @@ long winvmod(long a, long b)
         push	ebx
         mov 	ebp,edx         ; ebp = p
 
-; See Henri Cohen, "A Course in Computational Algebraic 
-; Number Theory", 1.3.2, for details of this algorithm. 
+; See Henri Cohen, A Course in Computational Algebraic 
+; Number Theory, 1.3.2, for details of this algorithm. 
 ; See AR2I.C for C version.
 ;
 ; Numbers can be negative, but never outside range [-p, p], 

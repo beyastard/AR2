@@ -10,16 +10,7 @@ void imul(ireg* a, ireg* b)
 	static long dmax4;
 	register long L;
 
-	if (a->value == NULL)
-		iinvparm("imul");
-
-	if (b->value == NULL)
-		iinvparm("imul");
-
-	if (a->digits < 1)
-		iinvparm("imul");
-
-	if (b->digits < 1)
+	if (a->value == NULL || b->value == NULL || a->digits < 1 || b->digits < 1)
 		iinvparm("imul");
 
 	utrim(a);

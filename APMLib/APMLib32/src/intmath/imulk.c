@@ -3,10 +3,7 @@
 // a = a * k
 void imulk(ireg* a, long k)
 {
-	if (a->value == NULL)
-		iinvparm("imulk");
-
-	if (a->digits < 1)
+	if (a->value == NULL || a->digits < 1)
 		iinvparm("imulk");
 
 	utrim(a);

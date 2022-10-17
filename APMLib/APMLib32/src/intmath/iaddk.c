@@ -1,14 +1,13 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = a + k, -2^31 < k < 2^31
 void iaddk(ireg* a, long k)
 {
-	static long f;
+	long f;
 
-	if (a->value == NULL)
-		iinvparm("iaddk");
-
-	if (a->digits < 1)
+	if (a->value == NULL || a->digits < 1)
 		iinvparm("iaddk");
 
 	if (k >= 0)
@@ -22,6 +21,7 @@ void iaddk(ireg* a, long k)
 				if (a->capacity <= a->digits)
 					uextend(a, a->digits + 1);
 
+				assert(a->value != NULL);
 				a->value[a->digits] = 1;
 				a->digits++;
 			}
@@ -58,6 +58,7 @@ void iaddk(ireg* a, long k)
 				if (a->capacity <= a->digits)
 					uextend(a, a->digits + 1);
 
+				assert(a->value != NULL);
 				a->value[a->digits] = 1;
 				a->digits++;
 			}

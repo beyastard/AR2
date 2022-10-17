@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "intmath.h"
 
 // a = (a mod 2^k) > 0,  k = 32-bit positive integer
@@ -14,10 +16,7 @@ void imod2k(ireg* a, long k)
 	static long kr;
 	static unsigned long km;
 
-	if (a->value == NULL)
-		iinvparm("imod2k");
-
-	if (a->digits < 1)
+	if (a->value == NULL || a->digits < 1)
 		iinvparm("imod2k");
 
 	if (k)
@@ -40,12 +39,18 @@ void imod2k(ireg* a, long k)
 				uextend(a, da);
 
 			if (a->digits < da)
-				xmovz(&a->value[a->digits], da - a->digits);
+            {
+				assert(a->value != NULL);
+                xmovz(&a->value[a->digits], da - a->digits);
+            }
 
 			xneg(a->value, da);
 
 			if (kr)
-				a->value[kq] &= km;
+            {
+				assert(a->value != NULL);
+                a->value[kq] &= km;
+            }
 		}
 		else
 		{
@@ -53,7 +58,10 @@ void imod2k(ireg* a, long k)
 				return;
 
 			if (kr)
-				a->value[kq] &= km;
+            {
+				assert(a->value != NULL);
+                a->value[kq] &= km;
+            }
 		}
 
 		a->digits = da;

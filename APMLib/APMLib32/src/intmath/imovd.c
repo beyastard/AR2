@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 #include "intmath.h"
 
 // a = string of decimal digits
@@ -19,7 +21,7 @@ void imovd(ireg* a, char* c)
 	// see if continuation (_) or minus sign (-)
 	if (c[0] == '_')
 	{
-		s = (a->flags & NegativeReg);
+		s = a->flags & NegativeReg;
 		i++;
 	}
 	else
@@ -33,7 +35,7 @@ void imovd(ireg* a, char* c)
 		}
 	}
 
-	while (1) // Stop at first non-decimal
+	while (true) // Stop at first non-decimal
 	{
 		k = c[i] - '0';
 

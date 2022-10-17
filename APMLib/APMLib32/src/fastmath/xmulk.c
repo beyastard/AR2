@@ -16,18 +16,18 @@ void xmulk(long* a, long k, long da)
 		mov    edx,k
 		mov    ebx,da
 		
-		mov    Zbp,EBP
+		mov    Zdi,EDI
         mov    Zsi,ESI
 
         mov    ESI,EAX            ; ESI = &a
         mov    ECX,EDX            ; ECX = k
-        xor    EBP,EBP
+        xor    EDI,EDI
 Lmulk2:
 		mov    EAX,[ESI]          ; EAX = a_i
         mul    ECX                ; Multiply by k
-        add    EAX,EBP            ; Add carry
+        add    EAX,EDI            ; Add carry
         adc    EDX,0  
-        mov    EBP,EDX            ; Save carry
+        mov    EDI,EDX            ; Save carry
         mov    [ESI],EAX
         lea    ESI,[ESI+4]
         dec    EBX
@@ -36,7 +36,7 @@ Lmulk2:
 
         mov    ESI,Zsi
 		
-        mov    EBP,Zbp
+        mov    EDI,Zdi
 		mov    edx,Zdx
 		mov    ebx,Zbx
 	}

@@ -3,10 +3,7 @@
 // a = b
 void imov(ireg* a, ireg* b)
 {
-	if (b->value == NULL)
-		iinvparm("imov");
-
-	if (b->digits < 1)
+	if (b->value == NULL || b->digits < 1)
 		iinvparm("imov");
 
 	if (a->value == NULL)
